@@ -24,22 +24,7 @@ cd /home/yinyong
 
     stage('Install') {
       steps {
-        sh '''cd /home/yinyong
-./sshpass -p bigdata@92 ssh -o StrictHostKeyChecking=no root@172.16.3.92
-
-
-cd /home/yinyong
-rm -rf tsgz-webinner-install
-
-
-file=$(find /home/yinyong -name tsgz*.tar.gz)
-tar -xzvf ${file##*/}
-
-cd tsgz-webinner-install
-./module_install.sh install
-
-exit
-exit'''
+        sh 'echo haha'
       }
     }
 
