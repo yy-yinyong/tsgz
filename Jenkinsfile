@@ -1,7 +1,7 @@
 pipeline {
   agent any
   stages {
-    stage('') {
+    stage('Build') {
       steps {
         sh '''cd /home/yinyong
 
@@ -19,6 +19,24 @@ cd /home/yinyong
 ./sshpass -p bigdata@92 scp -o StrictHostKeyChecking=no /home/yinyong/webinner/${file##*/} root@172.16.3.92:/home/yinyong
 
 '''
+      }
+    }
+
+    stage('Install') {
+      steps {
+        sh '''cd /home/yinyong
+./sshpass -p bigdata@92 ssh root@172.16.3.92
+
+
+cd /home/yinyong
+rm -rf tsgz-webinner-install
+tar -xzvf tsgz-webinner-install-*
+
+cd tsgz-webinner-install
+./module_install.sh install
+
+exit
+exit'''
       }
     }
 
